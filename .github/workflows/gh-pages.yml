@@ -1,0 +1,40 @@
+name: Build and Deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable' # or: 'beta', 'dev' or 'master'
+
+      - name: Init scripts
+        run: dart pub get
+        working-directory: .
+
+      - name: Test
+        run: flutter test
+        working-directory: .
+
+      - name: Build
+        run: flutter build web
+        working-directory: .
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/web
+          # cname: app.cyrilng.com
