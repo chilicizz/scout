@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,21 +15,21 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'ChiliCizz Scout'),
+      home: const ScoutHomePage(title: 'ChiliCizz Scout'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class ScoutHomePage extends StatefulWidget {
+  const ScoutHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<ScoutHomePage> createState() => _ScoutHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ScoutHomePageState extends State<ScoutHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
